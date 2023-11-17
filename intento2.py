@@ -85,13 +85,7 @@ if estado == "TODOS":
     nuevo_mapa = mapa1[["latitud", "longitud"]].copy()
     nuevo_mapa = nuevo_mapa.rename(columns={"latitud": "latitude", "longitud": "longitude"})
     nuevo_mapaT = nuevo_mapa.dropna(subset=["latitude", "longitude"])
-
-  
-    st.write("Contents of nuevo_mapaT:")
-    st.write(nuevo_mapaT)
-
-    st.map(nuevo_mapaT)  # The map should automatically recognize 'latitude' and 'longitude'
-
+    st.map(nuevo_mapaT)  
 
 else:
     tablaDep = sinRepe[sinRepe["DEPARTAMENTO1"] == estado] 
