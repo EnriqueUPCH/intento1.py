@@ -27,7 +27,7 @@ download_img()
 download_data1()
 download_dataInei()
 
-st.title("Áreas Naturales Protegidas (ANP) Pppa")
+st.title("Áreas Naturales Protegidas (ANP) ")
 
 with st.container():
     st.write("---")
@@ -85,10 +85,16 @@ if estado == "TODOS":
     nuevo_mapa = mapa1[["latitud", "longitud"]].copy()
     nuevo_mapa = nuevo_mapa.rename(columns={"latitud": "latitude", "longitud": "longitude"})
     nuevo_mapaT = nuevo_mapa.dropna(subset=["latitude", "longitude"])
+
+    # Check if there are any null values in nuevo_mapaT
     st.write("Null Values in nuevo_mapaT:")
     st.write(nuevo_mapaT.isnull().sum())
 
-    st.map(nuevo_mapaT)
+    # Check if the columns are present
+    if "latitude" not in nuevo_mapaT.columns or "longitude" not in nuevo_mapaT.columns:
+        st.warning("Columns 'latitude' and 'longitude' are required in nuevo_mapaT.")
+    else:
+        st.map(nuevo_mapaT)
 
 else:
     tablaDep = sinRepe[sinRepe["DEPARTAMENTO1"] == estado] 
