@@ -27,7 +27,7 @@ download_img()
 download_data1()
 download_dataInei()
 
-st.title("Áreas Naturales Protegidas (ANP)")
+st.title("Áreas Naturales Protegidas (ANP) Pppa")
 
 with st.container():
     st.write("---")
