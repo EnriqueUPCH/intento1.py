@@ -85,8 +85,11 @@ if estado == "TODOS":
     nuevo_mapa = mapa1[["latitud", "longitud"]].copy()
     nuevo_mapa = nuevo_mapa.rename(columns={"latitud": "latitude", "longitud": "longitude"})
     nuevo_mapaT = nuevo_mapa.dropna(subset=["latitude", "longitude"])
+    st.write("Null Values in nuevo_mapaT:")
+    st.write(nuevo_mapaT.isnull().sum())
 
     st.map(nuevo_mapaT)
+
 else:
     tablaDep = sinRepe[sinRepe["DEPARTAMENTO1"] == estado] 
     st.dataframe(tablaDep)
