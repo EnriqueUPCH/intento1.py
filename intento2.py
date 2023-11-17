@@ -104,8 +104,15 @@ else:
     st.dataframe(mapa1)
     nuevo_mapa = mapa1[["latitud", "longitud"]].copy()
     nuevo_mapa = nuevo_mapa.rename(columns={"latitud": "LAT", "longitud": "LON"})
+    nuevo_mapa = mapa1[["latitud", "longitud"]].copy()
+    nuevo_mapa = nuevo_mapa.rename(columns={"latitud": "latitude", "longitud": "longitude"})
+
+    # Drop rows with missing values in latitude or longitude
+    nuevo_mapa = nuevo_mapa.dropna(subset=["latitude", "longitude"])
 
     st.map(nuevo_mapa)
+
+    
 
     st.write("---")
 st.subheader("Integrantes")
