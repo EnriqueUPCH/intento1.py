@@ -86,6 +86,10 @@ if estado == "TODOS":
     nuevo_mapa = nuevo_mapa.rename(columns={"latitud": "latitude", "longitud": "longitude"})
     nuevo_mapaT = nuevo_mapa.dropna(subset=["latitude", "longitude"])
 
+    # Check the contents of nuevo_mapaT
+    st.write("Contents of nuevo_mapaT:")
+    st.write(nuevo_mapaT)
+
     # Check if there are any null values in nuevo_mapaT
     st.write("Null Values in nuevo_mapaT:")
     st.write(nuevo_mapaT.isnull().sum())
