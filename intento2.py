@@ -98,6 +98,10 @@ if estado == "TODOS":
     if "latitude" not in nuevo_mapaT.columns or "longitude" not in nuevo_mapaT.columns:
         st.warning("Columns 'latitude' and 'longitude' are required in nuevo_mapaT.")
     else:
+        # Check if there are any null values in the latitude and longitude columns
+        st.write("Null Values in latitude and longitude columns:")
+        st.write(nuevo_mapaT[["latitude", "longitude"]].isnull().sum())
+
         st.map(nuevo_mapaT, use_container_width=True, lat_column="latitude", lon_column="longitude")
 
 else:
