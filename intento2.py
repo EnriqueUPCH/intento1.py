@@ -98,7 +98,7 @@ if estado == "TODOS":
     if "latitude" not in nuevo_mapaT.columns or "longitude" not in nuevo_mapaT.columns:
         st.warning("Columns 'latitude' and 'longitude' are required in nuevo_mapaT.")
     else:
-        st.map(nuevo_mapaT)
+        st.map(nuevo_mapaT, use_container_width=True, lat_column="latitude", lon_column="longitude")
 
 else:
     tablaDep = sinRepe[sinRepe["DEPARTAMENTO1"] == estado] 
