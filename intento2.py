@@ -83,9 +83,9 @@ if estado == "TODOS":
     mapa1 = inei[inei["ubigeo_inei"].isin(todosSel)]
     st.dataframe(mapa1)
     nuevo_mapa = mapa1[["latitud", "longitud"]].copy()
-    nuevo_mapa = nuevo_mapa.rename(columns={"latitud": "LAT", "longitud": "LON"})
-    nuevo_mapaT = nuevo_mapa.dropna(subset=["LAT", "LON"])
-    
+    nuevo_mapa = nuevo_mapa.rename(columns={"latitud": "latitude", "longitud": "longitude"})
+    nuevo_mapaT = nuevo_mapa.dropna(subset=["latitude", "longitude"])
+
     st.map(nuevo_mapaT)
 else:
     tablaDep = sinRepe[sinRepe["DEPARTAMENTO1"] == estado] 
