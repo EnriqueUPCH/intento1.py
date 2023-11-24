@@ -65,7 +65,22 @@ fig = px.pie(
     title="Porcentaje de las ANP",
 )
 st.plotly_chart(fig)
-
+st.write("----")
+st.write("""
+    Seleccione la ANP que desea ver por departamento
+	""")
+opti= st.multiselect(
+    "Seleccione las universidades que desea comparar la el periodo de licenciamiento", 
+    options= sinRepe["ANP_CATE"].unique()
+    )
+nombre= sinRepe[sinRepe["ANP_CATE"].isin(opti)]
+st.dataframe(nombre)
+contN= nombre["DEPARTAMENTO1"].value_counts()
+st.subheader("Departamentos que cuentan con la ANP seleccionada")
+st.write("""
+            ----
+        """)
+st.bar_chart(contN)
 st.write("---")
 
 st.write("""
