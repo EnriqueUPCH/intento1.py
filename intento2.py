@@ -70,7 +70,7 @@ st.write("""
     Seleccione la ANP que desea ver por departamento
 	""")
 opti= st.multiselect(
-    "Seleccione las universidades que desea comparar la el periodo de licenciamiento", 
+    "Seleccione la ANP que desea ver en cada departamento", 
     options= sinRepe["ANP_CATE"].unique()
     )
 nombre= sinRepe[sinRepe["ANP_CATE"].isin(opti)]
