@@ -48,7 +48,7 @@ with st.container():
 st.write("----")
 st.write("*- A continuación se muestra la tabla general de las ANP con sus datos respectivos*")
 st.subheader("Tabla General")
-data = pd.read_csv("comps/ANP.csv", sep=";", encoding="utf-8")
+data = pd.read_csv("comps/ANP.csv", sep=";", encoding="utf-8").dropna(how='all')
 inei=pd.read_csv("comps/Inei.csv", sep=",", encoding="utf-8")
 x = data.set_index("ANP_NOMB")
 sinRepe = x.dropna(how='all')
@@ -70,21 +70,48 @@ st.write("""
     Seleccione la ANP que desea ver por departamento
 	""")
 opti= st.multiselect(
-    "Seleccione la ANP que desea ver en cada departamento", 
+    "Seleccione para ver cuantas ANP tiene cada departamento", 
     options= sinRepe["ANP_CATE"].unique()
     )
+    
 nombre= sinRepe[sinRepe["ANP_CATE"].isin(opti)]
 st.dataframe(nombre)
-contN= nombre["DEPARTAMENTO1"].value_counts()
+contN= nombre["DEPARTAMENTO1"].value_counts().sort_values(ascending=False)
+contN_sorted = pd.DataFrame({'Departamento': contN.index, 'Cantidad': contN.values}).sort_values(by='Cantidad', ascending=False)
+
 st.subheader("Departamentos que cuentan con la ANP seleccionada")
-st.write("""
-            ----
-        """)
-st.bar_chart(contN)
+
+fig = px.bar(
+    contN_sorted,
+    x='Departamento',
+    y='Cantidad',
+    title="Cantidad de ANP por Departamento",
+)
+fig.update_layout(xaxis_categoryorder='total ascending')
+st.plotly_chart(fig)
+
+
+st.write("---")
+
+opti2 = st.multiselect(
+    "Seleccione para ver el área de cada ANP", 
+    options=data["ANP_NOMB"].unique()
+)
+
+are = data[data["ANP_NOMB"].isin(opti2)]
+
+are_sorted = are.sort_values(by="ANP_SULEG", ascending=False)
+
+fig = px.bar(are_sorted, x="ANP_NOMB", y="ANP_SULEG", title="Área de ANP", text="ANP_SULEG")
+fig.update_traces(texttemplate="%{text:.2s}", textposition="outside")
+fig.update_layout(xaxis_categoryorder='total ascending',xaxis_title="Nombre", yaxis_title="Area")
+
+st.plotly_chart(fig)
+
 st.write("---")
 
 st.write("""
-	A continuación se visualiza la cantidad de ANP organizadas por departamento
+	A continuación se visualiza el area de cada ANP
 	""")
 depa = data["DEPARTAMENTO1"].dropna().unique()
 depaT = depa.tolist()
