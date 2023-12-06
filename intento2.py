@@ -156,6 +156,11 @@ else:
 
     st.write("---")
 st.subheader("Integrantes")
+st.write("""
+	Jordan Andres Nieves Sulca
+ 	Adim Rojas Burgos
+  	Lila Zarai Huanca Ampuero
+   	Slim Aspur Mendoza
 
 
 st.write("----")
