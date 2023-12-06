@@ -156,13 +156,12 @@ else:
 
     st.write("---")
 st.subheader("Integrantes")
-st.write("""
-	Jordan Andres Nieves Sulca, 
- 	Adim Rojas Burgos,
-  	Lila Zarai Huanca Ampuero,
-   	Slim Aspur Mendoza,
-    	""")
 
+st.write("Jordan Andres Nieves Sulca")
+st.write("Adim Gomez Rodrigez")
+st.write("Lila Zarai Huanca Ampuero")
+st.write("Slim Aspur Mendoza")
+st.write("Jeferson Rojas Burgos")
 
 st.write("----")
 st.write("Para ver mas el codigo de la pagina puede entrar al siguiente enlace:")
