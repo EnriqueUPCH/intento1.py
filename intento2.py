@@ -161,6 +161,7 @@ st.write("""
  	Adim Rojas Burgos
   	Lila Zarai Huanca Ampuero
    	Slim Aspur Mendoza
+    	""")
 
 
 st.write("----")
